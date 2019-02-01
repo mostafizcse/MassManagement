@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}Members{% endblock %}
+
+    {% block css %}
+    {% endblock %}
+
+    {% block content %}
+    <section class="pt-5 pb-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h1>{{ request.user.username|title }}</h1>
+            </div>
+
+            <!-- calclution -->
+             <div class="row justify-content-center mb-5">
+                <table class="table table-striped">
+                    <h3 class="text-center text-danger mb-4">Details</h3>
+                  <thead>
+                    <tr>
+                      <th scope="col">Total Meal</th>
+                      <th scope="col">Rate Per Meal</th>
+                      <th scope="col">My Meal Cost</th>
+                    </tr>
+                  <tr>
+                      <th scope="col">{{ self_total_meal|floatformat:2 }}</th>
+                      <th scope="col">{{ rate_per_meal|floatformat:2 }}</th>
+                      <th scope="col">{{ self_meal_cost|floatformat:2 }}</th>
+                    </tr>
+                  </thead>
+                </table>
+            </div>
+
+            <!-- Deposit -->
+            <div class="row justify-content-center mb-5">
+                <table class="table table-striped">
+                    <h3 class="text-center text-danger">Meal</h3>
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+
+                      <th scope="col">Meal Type</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for obj in self_meal_obj %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <th>{{ obj.meal_type|title }}</th>
+                      <td>{{ obj.date }}</td>
+                      <td>{{ obj.total }}</td>
+                    </tr>
+                    {% endfor %}
+                     <tr>
+                      <th scope="row">---</th>
+                      <td><strong>Total</strong></td>
+                      <td></td>
+                      <td><strong>{{ self_meal_total|floatformat:2 }}</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+
+            <!-- Deposit -->
+            <div class="row justify-content-center mb-5">
+                <table class="table table-striped">
+                    <h3 class="text-center text-danger">Deposit</h3>
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for obj in self_deposit_obj %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ obj.timestimp }}</td>
+                      <td>{{ obj.total }}</td>
+                    </tr>
+                    {% endfor %}
+                     <tr>
+                      <th scope="row">---</th>
+                      <td><strong>Total</strong></td>
+                      <td><strong>{{ self_deposit_total|floatformat:2 }}</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+
+            <!-- Expense -->
+            <div class="row justify-content-center">
+                <table class="table table-striped">
+                    <h3 class="text-center text-danger">Expense</h3>
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Expense Name</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for expense in self_expense_obj %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ expense.name|title }}</td>
+                      <td>{{ expense.timestimp }}</td>
+                      <td>{{ expense.price }}</td>
+                    </tr>
+                    {% endfor %}
+                     <tr>
+                      <th scope="row">---</th>
+                      <td><strong>Total</strong></td>
+                      <td>-</td>
+                      <td><strong>{{ self_expense_total|floatformat:2 }}</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}

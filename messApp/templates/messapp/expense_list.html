@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}Members{% endblock %}
+
+    {% block css %}
+    {% endblock %}
+
+    {% block content %}
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Who Buy</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for expense in object_list %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ expense.name|title }}</td>
+                      <td>{{ expense.buyer.username|title }}</td>
+                      <td>{{ expense.date }}</td>
+                      <td>{{ expense.price }}</td>
+                    </tr>
+                    {% endfor%}
+
+                    <tr>
+                      <th scope="row">#</th>
+                      <td colspan="3"><strong>Total</strong></td>
+                      <td><strong>{{ total_expense }}</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}

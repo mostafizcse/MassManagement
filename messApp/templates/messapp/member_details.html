@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}Members{% endblock %}
+
+    {% block css %}
+    {% endblock %}
+
+    {% block content %}
+    <section class="pt-5 pb-3">
+        <div class="conteinre">
+            <div class="row justify-content-center">
+                <h1>{{ member_details.name|title }}</h1>
+            </div>
+        </div>
+    </section>
+    <section class="py-5">
+        <div class="container">
+            <!--<div class="row justify-content-center mb-5">-->
+                <!--<table class="table table-striped">-->
+                    <!--<h3 class="text-center text-danger">Balance</h3>-->
+                  <!--<thead>-->
+                    <!--<tr>-->
+                      <!--<th scope="col">Deposit</th>-->
+                      <!--&lt;!&ndash;<th scope="col">Expense</th>&ndash;&gt;-->
+                      <!--<th scope="col">Meal Cost</th>-->
+                      <!--<th scope="col">Balance</th>-->
+                    <!--</tr>-->
+                  <!--<tr>-->
+                      <!--<th scope="col">{{ self_total_deposit|floatformat:2 }}</th>-->
+                      <!--<th scope="col">{{ self_meal_cost|floatformat:2 }}</th>-->
+                      <!--<th scope="col">{{ total_balance|floatformat:2 }}</th>-->
+                      <!--<th scope="col">-</th>-->
+                    <!--</tr>-->
+                  <!--</thead>-->
+                <!--</table>-->
+            <!--</div>-->
+             <div class="row justify-content-center mb-5">
+                <table class="table table-striped">
+                    <h3 class="text-center text-danger">Meal Description</h3>
+                  <thead>
+                    <tr>
+                      <th scope="col">Total Meal</th>
+                      <!--<th scope="col">Expense</th>-->
+                      <th scope="col">Rate Per Meal</th>
+                      <th scope="col">My Meal Cost</th>
+                    </tr>
+                  <tr>
+                      <th scope="col">{{ self_total_meal|floatformat:2 }}</th>
+                      <th scope="col">{{ rate_per_meal|floatformat:2 }}</th>
+                      <th scope="col">{{ self_meal_cost|floatformat:2 }}</th>
+                      <th scope="col">-</th>
+                    </tr>
+                  </thead>
+                </table>
+            </div>
+            <div class="row justify-content-center mb-5">
+                <table class="table table-striped">
+                    <h3 class="text-center text-danger">Deposit</h3>
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for obj in member_details.deposit_set.all %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ obj.timestimp }}</td>
+                      <td>{{ obj.total }}</td>
+                    </tr>
+                    {% endfor %}
+                     <tr>
+                      <th scope="row">Last</th>
+                      <td>Total</td>
+                      <td>{{ self_total_deposit|floatformat:2 }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="row justify-content-center">
+                <table class="table table-striped">
+                    <h3 class="text-center text-danger">Expense</h3>
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Expense Name</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for expense in member_details.expense_set.all %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ expense.name|title }}</td>
+                      <td>{{ expense.timestimp }}</td>
+                      <td>{{ expense.price }}</td>
+                    </tr>
+                    {% endfor %}
+                     <tr>
+                      <th scope="row">Last</th>
+                      <td>Total</td>
+                      <td>-</td>
+                      <td>{{ total_expense|floatformat:2 }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <!--{% for a in exp %}-->
+    <!--{{ a.price }}-->
+    <!--{% endfor %}-->
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}

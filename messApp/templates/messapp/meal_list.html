@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}Meal{% endblock %}
+
+    {% block css %}
+    {% endblock %}
+
+    {% block content %}
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h2>Current Month: {{ current_month }}, {{ current_year }}  </h2>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Meal Type</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Total Meal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for meal in meal_list %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ meal.meal_type|title }}</td>
+                        <td>{{ meal.date }}</td>
+                      <td>{{ meal.total }}</td>
+                    </tr>
+                    {% endfor%}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <section class="mt-5 pb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Total Expense</th>
+                      <th scope="col">Total Meal</th>
+                        <th scope="col">Rate Per Meal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ total_expense|floatformat:2 }}</td>
+                        <td>{{ total_meal|floatformat:2  }}</td>
+                        <td>{{ rate_per_meal|floatformat:2 }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-12 px-0">
+                    <h2 class="mt-5 mb-4 py-2 pl-3 bg-secondary text-white">Add New Meal</h2>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-success">Add to Meal</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}

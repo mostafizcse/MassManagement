@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}{% endblock %}
+
+    {% block css %}
+    {% endblock %}
+
+    {% block content %}
+    <section class="d-flex align-items-center justify-content-center" style="height:80vh">
+
+                 <div class="text-center" style="height:auto">
+                     <h1>Welcome To Bazar Management System.</h1>
+                    {% if request.user.is_authenticated %}
+                        <h3 class="mt-5">Hello <mark>{{ request.user.username|title }}</mark></h3>
+                    {% else %}
+                        <a href="{% url 'account:login' %}" class="btn btn-success">Login</a>
+                        or
+                        <a href="{% url 'account:registration' %}" class="btn btn-success">Registration</a>
+
+                    {% endif %}
+                </div>
+
+    </section>
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}

@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}Members{% endblock %}
+
+    {% block css %}
+    {% endblock %}
+
+    {% block content %}
+    <section class="pt-5 pb-1">
+        <div class="conteinre">
+            <div class="row justify-content-center">
+                <h1>{{ bazar_for|title }}</h1>
+            </div>
+        </div>
+    </section>
+    <section class="pt-3 pb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+            </div>
+            <div class="row justify-content-center">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% if bazar_obj %}
+                    {% for expense in bazar_obj %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ expense.name|title }}</td>
+                      <td>{{ expense.date }}</td>
+                    </tr>
+                    {% endfor %}
+                  {% else %}
+                  <h4>Nothing have</h4>
+                  {% endif %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    {% if tomorrow_obj %}
+    <section class="py-5">
+        <div class="container">
+             <div class="row justify-content-center mb-2">
+                <h5>{{ tomorrow_obj.all.first.date }} | {{ tomorrow_obj.all.first.date.day }}</h5>
+            </div>
+            <div class="row justify-content-center">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col">Name</th>
+                      <!--<th scope="col">Who Buy</th>-->
+                      <th scope="col">Date</th>
+                      <!--<th scope="col">Price</th>-->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for expense in tomorrow_obj %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ expense.name|title }}</td>
+                      <td>{{ expense.date }}</td>
+                    </tr>
+                    {% endfor%}
+
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+
+    <!--<section class="py-5">-->
+        <!--<div class="container">-->
+             <!--<div class="row justify-content-center mb-2">-->
+                <!--<h1>Date is: {{ two_day.all.first.date }}</h1>-->
+            <!--</div>-->
+            <!--<div class="row justify-content-center">-->
+                <!--<table class="table table-striped">-->
+                  <!--<thead>-->
+                    <!--<tr>-->
+                      <!--<th scope="col">No.</th>-->
+                      <!--<th scope="col">Name</th>-->
+                      <!--<th scope="col">Date</th>-->
+                    <!--</tr>-->
+                  <!--</thead>-->
+                  <!--<tbody>-->
+                    <!--{% for expense in two_obj %}-->
+                    <!--<tr>-->
+                      <!--<th scope="row">{{ forloop.counter }}</th>-->
+                      <!--<td>{{ expense.name|title }}</td>-->
+                      <!--<td>{{ expense.date }}</td>-->
+                    <!--</tr>-->
+                    <!--{% endfor%}-->
+
+                  <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
+
+
+    <!--<section class="py-5">-->
+        <!--<div class="container">-->
+             <!--<div class="row justify-content-center mb-2">-->
+                <!--<h1>Date is: {{ third_day.all.first.date }}</h1>-->
+            <!--</div>-->
+            <!--<div class="row justify-content-center">-->
+                <!--<table class="table table-striped">-->
+                  <!--<thead>-->
+                    <!--<tr>-->
+                      <!--<th scope="col">No.</th>-->
+                      <!--<th scope="col">Name</th>-->
+                      <!--<th scope="col">Date</th>-->
+                    <!--</tr>-->
+                  <!--</thead>-->
+                  <!--<tbody>-->
+                    <!--{% for expense in third_obj %}-->
+                    <!--<tr>-->
+                      <!--<th scope="row">{{ forloop.counter }}</th>-->
+                      <!--<td>{{ expense.name|title }}</td>-->
+                      <!--<td>{{ expense.date }}</td>-->
+                    <!--</tr>-->
+                    <!--{% endfor%}-->
+
+                  <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
+
+
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}

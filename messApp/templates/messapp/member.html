@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}Members{% endblock %}
+
+    {% block css %}
+    {% endblock %}
+
+    {% block content %}
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for member in object_list %}
+                    <tr>
+                      <td><a href="{{ member.get_absolute_url }}">{{ member.name|title }}</a></td>
+                    </tr>
+                    {% endfor%}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}
